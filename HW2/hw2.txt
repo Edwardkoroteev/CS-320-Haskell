@@ -1,0 +1,64 @@
+CS 320 Principles of Programming Languages
+Homework 2
+Due Friday 1/26
+
+Questions 4-6 refer to the contents of HW2.lhs. Include two files in your submission: a text file with the answers to questions 1-3, and the completed HW2.lhs file.
+
+1. (3 points)
+
+Imagine you're given an interpreter for C++ and asked to build a compiler from C++ to x86 machine code that implements the same semantics as the interpreter. What does it mean to claim your compiler is correct? How would you test this claim?
+
+I would claim that my compiler is correct when I run the code and make sure
+the semantics are exactly like the interpreter says. The ultimate test would be to grab the source code,
+originally interpret it and check and see what the semantics are. Then, test
+your compiler by doing the same process and check the symantics. After all of
+that, make sure your results between the two programsa are the same.
+
+2. (4 points)
+
+Consider the following Haskell code:
+
+  data Shape = Circle Double | Rect Double Double
+
+  area :: Shape -> Double
+  area (Circle radius) = 3.1415 * radius * radius
+  area (Rect width height) = width * height
+
+Write out the full sequence of tokens in this program, in the order that they appear.
+
+[Data, ID(Shape), =, ID(Circle), TYPE_DOUBLE, |, ID(Rect), TYPE_DOUBLE, TYPE_DOUBLE]
+
+[ID(area),::,ID(Shape),->,TYPE_DOUBLE]
+[ID(area),L_PAREN,ID(Circle),ID(radius),R_PAREN,=,NUM(3.1415),*,ID(radius),*,ID(radius)]
+[ID(area),L_PAREN,ID(Rect),ID(width),ID(height),=,ID(width),*,ID(height)]
+
+3. (8 points)
+
+For each of the first four phases of a typical compiler pipeline (source input, lexical analysis, parsing, and semantic analysis), describe a small specific change that you could make to the code in question 2 that would trigger an error in that phase (and not any previous phase). Justify each answer. (You might find it helpful to copy the code into a Haskell file and load it in an interpreter to try to trigger errors there.)
+
+Source input: For source input this would mean some kind of error with the
+file when compiling. Like an incorrect name or wrong format.
+
+Lexical analysis: Something that would trigger the lexical analyis is having
+to mess up some kind of keyword in the code that is misspelled. 
+
+Parsing: To trigger a parsing error it would mean to mess up the syntax of the 
+of the code. So entering something like "area :: Shape Double ->" would trigger the parsing stage.
+This 
+
+semantic analysis: A change in the code to create a semantic analysis would be
+to simply rearange a logic code like "width * height = area (Rect width
+height)" will trigger a semantic analysis error. This will be a semantic error
+becuase the logic doesn't make sense.
+
+4. (4 points)
+
+Fill in the definitions of the Sing and (:.:) cases for the "check" function.
+
+5. (2 points)
+
+Fill in the definition of the "star" function.
+
+6. (6 points)
+
+Write at least three more regexes and at least two tests for each that demonstrate that "check" and "star" are working correctly.
